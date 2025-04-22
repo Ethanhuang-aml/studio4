@@ -1,41 +1,36 @@
 const imageFolder = "images";
-const imageCount = 1; // 修改为你实际的图片数量
+const imageCount = 3; // 改为你图片数量
+const photos = [];
 
 for (let i = 1; i <= imageCount; i++) {
   const img = document.createElement('img');
   img.src = `${imageFolder}/${i}.png`;
   img.className = "photo";
 
-  // 设置初始位置
   let x = Math.random() * window.innerWidth;
   let y = Math.random() * window.innerHeight;
-
-  // 每张图片独立的移动速度
-  const speedX = (Math.random() - 0.5) * 0.5;
-  const speedY = (Math.random() - 0.5) * 0.5;
-
-  img.style.position = "absolute"; // 确保 position 设置了
-  img.style.left = `${x}px`;
-  img.style.top = `${y}px`;
+  const speedX = (Math.random() - 0.5) * 0.3;
+  const speedY = (Math.random() - 0.5) * 0.3;
 
   document.body.appendChild(img);
+  photos.push({ img, x, y, speedX, speedY });
+}
 
-  function animate() {
-    x += speedX;
-    y += speedY;
+function animateAll() {
+  for (const p of photos) {
+    p.x += p.speedX;
+    p.y += p.speedY;
 
-    // 屏幕边界检测（从另一边回来）
-    if (x > window.innerWidth) x = -200;
-    if (x < -200) x = window.innerWidth;
-    if (y > window.innerHeight) y = -200;
-    if (y < -200) y = window.innerHeight;
+    if (p.x > window.innerWidth) p.x = -200;
+    if (p.x < -200) p.x = window.innerWidth;
+    if (p.y > window.innerHeight) p.y = -200;
+    if (p.y < -200) p.y = window.innerHeight;
 
-    // 实时更新位置
-    img.style.left = `${x}px`;
-    img.style.top = `${y}px`;
-
-    requestAnimationFrame(animate);
+    // 使用 transform 替代 left/top
+    p.img.style.transform = `translate(${p.x}px, ${p.y}px)`;
   }
 
-  animate();
+  requestAnimationFrame(animateAll);
 }
+
+animateAll();

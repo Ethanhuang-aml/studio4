@@ -1,15 +1,17 @@
 html, body {
     margin: 0;
     overflow: hidden;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
   }
   
   .photo {
     position: absolute;
     width: 200px;
     height: auto;
-    opacity: 0.85;
+    opacity: 0.95;
     pointer-events: none;
+    filter: blur(0.5px) grayscale(15%);
+    will-change: transform;
   }
   
   
