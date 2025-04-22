@@ -4,7 +4,7 @@ const photos = [];
 
 for (let i = 1; i <= imageCount; i++) {
   const img = document.createElement('img');
-  img.src = `${imageFolder}/${i}.png`;
+  img.src = `${imageFolder}/${i}.jpg`;
   img.className = "photo";
 
   let x = Math.random() * window.innerWidth;
