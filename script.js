@@ -1,5 +1,5 @@
 const imageFolder = "images";
-const imageCount = 3; // 改为你图片数量
+const imageCount = 15; // 改为你图片数量
 const photos = [];
 
 for (let i = 1; i <= imageCount; i++) {
